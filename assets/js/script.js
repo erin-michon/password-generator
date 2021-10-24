@@ -1,6 +1,6 @@
 // Variables
-userInput = {};
 
+// arrays for each character type
 let uppercase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',];
 
 let lowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' ];
@@ -9,7 +9,8 @@ let special = ['!','@','#','$','%','&','~','-','_','+','=','<','>']
 
 let numeric = ['1','2','3','4','5','6','7','8','9','0']
 
-
+//"master" array that will contain all available characters for the password
+let availCharArray = [];
 
 
 // Get references to the #generate element (button)
@@ -54,7 +55,7 @@ function userPasswordLength () {
   //validate the input - valdiate answers (must select at least one type of character)
 
   if (includeUppercase === false && includeLowercase === false && includeNumeric === false && includeSpecial === false) {
-    alert("You must include at least one character type for your password to be generated.")
+    alert("You must include at least one character type for your password to be generated.");
     return null;
   };
 
@@ -68,19 +69,55 @@ function userPasswordLength () {
   };
 
   console.log(userInput);
-
-  //when this function is ran, below is the output
-  return userInput;
-};
-     
-
-function generatePassword() {
-  //3. generate password based on critera
   //For each character type, create an array
   //For each confirmed character type array - add together to create main array to pull characters from
+  //if the player confirmed the char type, add it to the availCharArray
+  if (includeUppercase) {
+    availCharArray = availCharArray.concat(uppercase);
+  }
+
+  if (includeLowercase) {
+    availCharArray=availCharArray.concat(lowercase);
+  }
+
+  if (includeNumeric) {
+    availCharArray=availCharArray.concat(numeric);
+  }
+
+  if (includeSpecial) {
+    availCharArray=availCharArray.concat(special);
+  }
+
+  console.log(availCharArray);
+
+  //generate password based on critera 
   //Determine length of password from userInput.length
-  //from main array, pull random characters to fil the length
- 
+  //from availCharArray, pull that number of random characters to create the password
+
+  let password = [];
+
+  let randomChar = availCharArray[Math.floor(Math.random()*availCharArray.length)]
+  console.log(randomChar);
+  
+  password.push(randomChar);
+  console.log(password);
+
+  randomChar = availCharArray[Math.floor(Math.random()*availCharArray.length)]
+  console.log(randomChar);
+  
+  password.push(randomChar);
+  console.log(password);
+
+
+  //when this function is ran, below is the output
+  // return availCharArray
+};
+
+
+
+function generatePassword() {
+
+
 
 
   //4. display the generated password on the page
