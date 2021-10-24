@@ -1,21 +1,16 @@
-   //  a. password length between 8-128 char
-  //      user input will be a number
-  //  b. lowercase
-  //      user input will be a confirmation (yes/no to include)
-  //  c. uppercase
-  //      user input will be a confirmation (yes/no to include)
-  //  d. numeric
-  //      user input will be a confirmation (yes/no to include)
-  //  e. special char
-  //      user input will be a confirmation (yes/no to include)  
-  //2. validate the input 
-  //      a. number must be between 8-128, using if/then
-  //      b. one character type must be included, using a check against confirmation answers?
-  //2a.Create an object to store the answers from the user
-
-
-// Assignment code here
+// Variables
 userInput = {};
+
+let uppercase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',];
+
+let lowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' ];
+
+let special = ['!','@','#','$','%','&','~','-','_','+','=','<','>']
+
+let numeric = ['1','2','3','4','5','6','7','8','9','0']
+
+
+
 
 // Get references to the #generate element (button)
 let generateBtn = document.querySelector("#generate");
@@ -23,14 +18,14 @@ let generateBtn = document.querySelector("#generate");
 //functions for passwordcritera
 
 function userPasswordLength () {
-  //1. prompt the user for the password criteria  
+  //prompt the user for the password criteria  
   let length = prompt("How many characters for your desired password?");
   console.log(length);
 
   length = Math.round(length);
   console.log(length);
 
-  //2. validate the input valdiate answer (password length between 8-128 char)
+  //validate the input valdiate answer (password length between 8-128 char)
   if (isNaN(length)) {
     alert("Please submit a number to represent the length of your password.")
     return userPasswordLength();
@@ -43,7 +38,8 @@ function userPasswordLength () {
   alert("The password must between 8 and 128 characters.")
   return null;
   }
-
+  
+  //prompt user for character types (yes/no via confirm())
   let includeUppercase = confirm("Would you like to include upper case characters in your password?")
   console.log(includeUppercase);
 
@@ -55,30 +51,37 @@ function userPasswordLength () {
 
   let includeSpecial = confirm("Would you like to include special characters in your password?")
   console.log(includeSpecial);
-  //2. validate the input - valdiate answers (must select at least one type of character)
+  //validate the input - valdiate answers (must select at least one type of character)
 
   if (includeUppercase === false && includeLowercase === false && includeNumeric === false && includeSpecial === false) {
     alert("You must include at least one character type for your password to be generated.")
     return null;
   };
 
+  //store user answers in this object (objec)
   userInput = {
     length: length,
     includeUppercase: includeUppercase,
     includeLowercase: includeLowercase,
-    includeNumeric: includeNumeric 
+    includeNumeric: includeNumeric, 
+    includeSpecial: includeSpecial
   };
 
-  console.log(userInput.length);
-  console.log(userInput.includeNumeric);
+  console.log(userInput);
 
+  //when this function is ran, below is the output
+  return userInput;
 };
      
 
 function generatePassword() {
-  console.log("Hey you clicked a button!")
   //3. generate password based on critera
-  //    
+  //For each character type, create an array
+  //For each confirmed character type array - add together to create main array to pull characters from
+  //Determine length of password from userInput.length
+  //from main array, pull random characters to fil the length
+ 
+
 
   //4. display the generated password on the page
     return "Generated Password will go here!"
@@ -94,7 +97,7 @@ function writePassword() {
   passwordText.value = password;
 };
 
-// Add event listener to generate button
+// Add event listener to generate button - when the button is clicked on the fxn launches
 generateBtn.addEventListener("click", userPasswordLength);
 
 //functions called
