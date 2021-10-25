@@ -12,7 +12,7 @@ let availCharArray = [];
 // Get references to the #generate element (button)
 let generateBtn = document.querySelector("#generate");
 
-//functions to create password
+// **FUNCTION TO CREATE PASSWORD**
 
 function generatePassword () {
   //prompt the user for the password criteria  
@@ -124,7 +124,7 @@ function generatePassword () {
   return finalPass;
 };
 
-// Write password to the #password input
+// **FUNCTION TO WRITE PASSWORD TO HTML
 function writePassword() {
   var password = generatePassword();
   
@@ -135,6 +135,3 @@ function writePassword() {
 
 // Add event listener to generate button - when the button is clicked on the fxn launches
 generateBtn.addEventListener("click", writePassword);
-
-
-
