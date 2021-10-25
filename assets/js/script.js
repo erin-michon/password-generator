@@ -160,8 +160,7 @@ function writePassword() {
 };
 
 // Add event listener to generate button - when the button is clicked on the fxn launches
-generateBtn.addEventListener("click", generatePassword);
+generateBtn.addEventListener("click", writePassword);
 
-//functions called
 
 
